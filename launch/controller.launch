@@ -1,0 +1,10 @@
+<launch>
+
+  <node name="controller" pkg="controller" type="controller" />
+
+  <node name="reference" pkg="controller" type="reference" />
+
+  <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+
+  
+</launch>
