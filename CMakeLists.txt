@@ -193,10 +193,14 @@ include_directories(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(controller src/controller.cpp)
-target_link_libraries(controller ${catkin_LIBRARIES})
-add_dependencies(controller controller_generate_messages_cpp)
+add_executable(reference_controller src/abstract_controller.cpp src/reference_controller.cpp src/reference_main.cpp)
+target_link_libraries(reference_controller ${catkin_LIBRARIES})
+add_dependencies(reference_controller controller_generate_messages_cpp)
 
-add_executable(reference src/reference.cpp)
-target_link_libraries(reference ${catkin_LIBRARIES})
-add_dependencies(reference controller_generate_messages_cpp)
+add_executable(square_controller src/abstract_controller.cpp src/square_controller.cpp src/square_main.cpp)
+target_link_libraries(square_controller ${catkin_LIBRARIES})
+add_dependencies(square_controller controller_generate_messages_cpp)
+
+add_executable(reference_node src/reference_node.cpp)
+target_link_libraries(reference_node ${catkin_LIBRARIES})
+add_dependencies(reference_node controller_generate_messages_cpp)
