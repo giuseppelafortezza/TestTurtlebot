@@ -7,6 +7,7 @@ add_definitions(-std=gnu++11)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  dynamic_reconfigure
   geometry_msgs
   roscpp
   rospy
@@ -89,10 +90,7 @@ find_package(catkin REQUIRED COMPONENTS
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
+generate_dynamic_reconfigure_options(cfg/config_tool.cfg)
 
 ###################################
 ## catkin specific configuration ##
@@ -191,16 +189,22 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
+
+
 include_directories(include ${catkin_INCLUDE_DIRS})
 
 add_executable(reference_controller src/abstract_controller.cpp src/reference_controller.cpp src/reference_main.cpp)
 target_link_libraries(reference_controller ${catkin_LIBRARIES})
-add_dependencies(reference_controller controller_generate_messages_cpp)
+add_dependencies(reference_controller controller_generate_messages_cpp controller_gencfg)
 
 add_executable(square_controller src/abstract_controller.cpp src/square_controller.cpp src/square_main.cpp)
 target_link_libraries(square_controller ${catkin_LIBRARIES})
-add_dependencies(square_controller controller_generate_messages_cpp)
+add_dependencies(square_controller controller_generate_messages_cpp controller_gencfg)
 
 add_executable(reference_node src/reference_node.cpp)
 target_link_libraries(reference_node ${catkin_LIBRARIES})
 add_dependencies(reference_node controller_generate_messages_cpp)
+
+add_executable(server nodes/server.cpp)
+target_link_libraries(server ${catkin_LIBRARIES})
+add_dependencies(server controller_generate_messages_cpp controller_gencfg)

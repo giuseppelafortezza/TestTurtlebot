@@ -13,7 +13,7 @@ protected:
     turtlesim::Pose curr;
     geometry_msgs::Pose2D reff;
     geometry_msgs::Twist twist; 
-    double kp1 = 1;
+    double kp1 = 0.5;
     double kp2 = 7.5;
     double ki1 = 0;
     double ki2 = 0;

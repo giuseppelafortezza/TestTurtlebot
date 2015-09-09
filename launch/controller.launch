@@ -1,10 +1,8 @@
 <launch>
 
-  <node name="controller" pkg="controller" type="controller" />
+  <node name="square_controller" pkg="controller" type="square_controller" />
 
-  <node name="reference" pkg="controller" type="reference" />
-
-  <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+  <node pkg="turtlesim" name="turtle" type="turtlesim_node"/>
 
   
 </launch>

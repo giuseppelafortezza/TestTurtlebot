@@ -7,10 +7,20 @@
 #include <turtlesim/Pose.h>
 #include "abstract_controller.h"
 
+#include <controller/config_toolConfig.h>
+#include <dynamic_reconfigure/server.h>
+#include <ros/ros.h>
+
+
+
 class square_controller:public abstract_controller
 {    
+private:
+    dynamic_reconfigure::Server<controller::config_toolConfig> server;
+    dynamic_reconfigure::Server<controller::config_toolConfig>::CallbackType f;
 public:
     square_controller();
+    void callback(controller::config_toolConfig &config, uint32_t level);   //NUOVE LINEE
     void init();
     void run();
 };

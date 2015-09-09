@@ -49,14 +49,15 @@ void abstract_controller::ReadCurrentPosition(const turtlesim::Pose::ConstPtr& m
 void abstract_controller::NewReference()
 {  
     double l = 3;
-    reff.theta += M_PI/2;
+    int n = 4;  //numero dei vertici del poligono
+    double delta_theta = 2*M_PI/n;
     
     if(reff.theta > 2*M_PI)
         reff.theta -= 2*M_PI;
     
-    
-    reff.x += l*sin(reff.theta);
-    reff.y += -l*cos(reff.theta);
+    reff.x += l*cos(reff.theta);
+    reff.y += l*sin(reff.theta);
+    reff.theta += delta_theta;
 }
 
 
