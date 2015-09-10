@@ -204,7 +204,3 @@ add_dependencies(square_controller controller_generate_messages_cpp controller_g
 add_executable(reference_node src/reference_node.cpp)
 target_link_libraries(reference_node ${catkin_LIBRARIES})
 add_dependencies(reference_node controller_generate_messages_cpp)
-
-add_executable(server nodes/server.cpp)
-target_link_libraries(server ${catkin_LIBRARIES})
-add_dependencies(server controller_generate_messages_cpp controller_gencfg)

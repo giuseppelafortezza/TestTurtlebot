@@ -17,6 +17,9 @@ protected:
     double kp2 = 7.5;
     double ki1 = 0;
     double ki2 = 0;
+    int vertex = 3; //numero dei vertici del poligono
+    double alpha = M_PI/4;
+    double rho = 0.4*vertex;     //raggio della circonferenza circoscritta
     ros::NodeHandle n;
     ros::Subscriber cur_pose_sub;
     ros::Publisher comand_pub;

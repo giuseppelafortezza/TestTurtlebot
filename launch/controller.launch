@@ -4,5 +4,6 @@
 
   <node pkg="turtlesim" name="turtle" type="turtlesim_node"/>
 
+  <node pkg="rqt_reconfigure" name="grafic_gui" type="rqt_reconfigure" />
   
 </launch>

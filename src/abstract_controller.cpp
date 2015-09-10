@@ -1,7 +1,6 @@
 #include "controller/abstract_controller.h"
 #include <ros/ros.h>
 #include <std_msgs/String.h>
-//#include "../include/controller/abstract_controller.h"
 
 abstract_controller::abstract_controller()
 {
@@ -48,16 +47,16 @@ void abstract_controller::ReadCurrentPosition(const turtlesim::Pose::ConstPtr& m
 
 void abstract_controller::NewReference()
 {  
-    double l = 3;
-    int n = 4;  //numero dei vertici del poligono
-    double delta_theta = 2*M_PI/n;
-    
+    double delta_theta = 2*M_PI/vertex;
+    double circ_center_x = 5.5;
+    double circ_center_y = 5.5;
     if(reff.theta > 2*M_PI)
         reff.theta -= 2*M_PI;
     
-    reff.x += l*cos(reff.theta);
-    reff.y += l*sin(reff.theta);
+    reff.x = circ_center_x + rho*cos(alpha);
+    reff.y = circ_center_y + rho*sin(alpha);
     reff.theta += delta_theta;
+    alpha += delta_theta;
 }
 
 
@@ -65,7 +64,7 @@ void abstract_controller::NewReference()
 void abstract_controller::init()
 {
     cur_pose_sub = n.subscribe("/turtle1/pose", 1000, &abstract_controller::ReadCurrentPosition, this);        
-    comand_pub = n.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1000);   // semplice nodo
+    comand_pub = n.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1000);  
 }
 
 

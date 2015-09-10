@@ -25,11 +25,7 @@ int main(int argc, char **argv)
         std_msgs::String msg;
         std::stringstream ss;
         geometry_msgs::Pose2D ref_pose;
-        
        
-        //int q = count % 360;
-        //ref_pose.x = 5.5 + r*cos(2*M_PI*q/360);
-        //ref_pose.y = 5.5 + r*sin(2*M_PI*q/360); 
         ref_pose.x = q_x[count % 4];
         ref_pose.y = q_y[count % 4];
         

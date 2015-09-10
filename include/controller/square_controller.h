@@ -20,7 +20,7 @@ private:
     dynamic_reconfigure::Server<controller::config_toolConfig>::CallbackType f;
 public:
     square_controller();
-    void callback(controller::config_toolConfig &config, uint32_t level);   //NUOVE LINEE
+    void config_callback(controller::config_toolConfig &config, uint32_t level);   //NUOVE LINEE
     void init();
     void run();
 };
