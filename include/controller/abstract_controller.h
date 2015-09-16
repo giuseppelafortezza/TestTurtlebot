@@ -5,21 +5,21 @@
 #include <ros/node_handle.h>
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/Pose2D.h>
-#include <turtlesim/Pose.h>
+#include <nav_msgs/Odometry.h>
 
 class abstract_controller
 {
 protected:
-    turtlesim::Pose curr;
+    nav_msgs::Odometry curr;
     geometry_msgs::Pose2D reff;
-    geometry_msgs::Twist twist; 
-    double kp1 = 0.5;
-    double kp2 = 7.5;
+    geometry_msgs::Twist twist;
+    double kp1 = 0;
+    double kp2 = 0;
     double ki1 = 0;
     double ki2 = 0;
     int vertex = 3; //numero dei vertici del poligono
     double alpha = M_PI/4;
-    double rho = 0.4*vertex;     //raggio della circonferenza circoscritta
+    double rho = 0.7*vertex;     //raggio della circonferenza circoscritta
     ros::NodeHandle n;
     ros::Subscriber cur_pose_sub;
     ros::Publisher comand_pub;
@@ -27,11 +27,12 @@ protected:
     double error_lin;
     double error_ang_old;
     double error_lin_old;
+    double typeController = 1;  //0 = auto controller   1 = point controller
 
 protected:
-    void ReadCurrentPosition(const turtlesim::Pose::ConstPtr& msg);
-    double ErrorAngle(turtlesim::Pose cur, geometry_msgs::Pose2D ref);
-    double ErrorLinear(turtlesim::Pose cur, geometry_msgs::Pose2D ref);
+    void ReadCurrentPosition(const nav_msgs::Odometry::ConstPtr& msg);
+    double ErrorAngle(nav_msgs::Odometry cur, geometry_msgs::Pose2D ref);
+    double ErrorLinear(nav_msgs::Odometry cur, geometry_msgs::Pose2D ref);
     virtual void NewReference();
     
 public:
